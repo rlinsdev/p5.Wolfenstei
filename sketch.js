@@ -55,6 +55,11 @@ const gamemap = [
 	  const deltaDistX = rayDir.mag()/rayDir.x
 	  const deltaDistY = rayDir.mag()/rayDir.y
 
+	  // Getting the position of player, but without decimal places
+	  const mapPos = createVector(floor(pos.x), floor(pos.y));
+
+
+
 
 	}
   }
