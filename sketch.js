@@ -85,8 +85,30 @@ function draw() {
 		}
 
 
+		let hit = false;
 
+		// Initialize LineSize with the distance to axis
+		let ddaLineSizeX = distToSideX;
+		let ddaLineSizeY = distToSideY;
 
+		// Copy vector pos to wallMapPos vector
+		let wallMapPos = mapPos.copy();
+
+		// Implementing DDA algorithm
+		while (hit == false) {
+
+			if (ddaLineSizeX < ddaLineSizeY) {
+				wallMapPos.x += stepX;
+				ddaLineSizeX += deltaDistX;
+			} else {
+				wallMapPos.y += stepY;
+				ddaLineSizeY += deltaDistY;
+			}
+			// Check if hit the wall
+			if (gamemap[wallMapPos.x][wallMapPos.x] > 0) {
+				hit = true;
+			}
+		}
 
 	}
 }
