@@ -51,9 +51,9 @@ function draw() {
 		// Ray from the Player until the small peace of plane
 		const rayDir = p5.Vector.add(dir, cameraPixel);
 
-		// .mag will calculate magnitude of vector
-		const deltaDistX = rayDir.mag() / rayDir.x
-		const deltaDistY = rayDir.mag() / rayDir.y
+		// .mag will calculate magnitude of vector. Must be abs. DeltaDist is always positive
+		const deltaDistY = abs(rayDir.mag() / rayDir.y);
+		const deltaDistX = abs(rayDir.mag() / rayDir.x);
 
 		// Getting the position of player, but without decimal places
 		const mapPos = createVector(floor(pos.x), floor(pos.y));
