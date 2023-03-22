@@ -51,6 +51,10 @@ const gamemap = [
 	  // Ray from the Player until the small peace of plane
 	  const rayDir = p5.Vector.add(dir, cameraPixel);
 
+	  // .mag will calculate magnitude of vector
+	  const deltaDistX = rayDir.mag()/rayDir.x
+	  const deltaDistY = rayDir.mag()/rayDir.y
+
 
 	}
   }
