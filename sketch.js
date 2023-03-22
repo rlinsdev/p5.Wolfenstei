@@ -64,6 +64,8 @@ function draw() {
 		let stepY;
 		let stepX;
 
+		let perpendicularDist;
+
 		// Rays (FOV) going to left (X)
 		if (rayDir.x < 0) {
 			distToSideX = (pos.x - mapPos.x) * deltaDistX;
@@ -111,6 +113,12 @@ function draw() {
 			if (gamemap[wallMapPos.x][wallMapPos.y] > 0) {
 				hit = true;
 			}
+		}
+		// Formula to avoid fish yes
+		if (hitSide == 0) {
+			perpendicularDist = abs(wallMapPos.x - pos.x + ((1-stepX)/2))/rayDir.x;
+		} else {
+			perpendicularDist = abs(wallMapPos.y - pos.y + ((1-stepY)/2))/rayDir.y;
 		}
 	}
 }
