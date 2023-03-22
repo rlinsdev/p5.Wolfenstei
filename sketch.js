@@ -52,8 +52,13 @@ function draw() {
 		const rayDir = p5.Vector.add(dir, cameraPixel);
 
 		// .mag will calculate magnitude of vector. Must be abs. DeltaDist is always positive
-		const deltaDistY = abs(rayDir.mag() / rayDir.y);
-		const deltaDistX = abs(rayDir.mag() / rayDir.x);
+		// This is very cost calculation.
+		// const deltaDistY = abs(rayDir.mag() / rayDir.y);
+		// const deltaDistX = abs(rayDir.mag() / rayDir.x);
+
+		// Just must be t he same proportion. Change the 'Magnitude' to 1
+		const deltaDistY = abs(1 / rayDir.y);
+		const deltaDistX = abs(1 / rayDir.x);
 
 		// Getting the position of player, but without decimal places
 		const mapPos = createVector(floor(pos.x), floor(pos.y));
@@ -114,7 +119,7 @@ function draw() {
 				hit = true;
 			}
 		}
-		// Formula to avoid fish yes
+		// Formula to avoid fish yes. Will calculate the distance player until wall
 		if (hitSide == 0) {
 			perpendicularDist = abs(wallMapPos.x - pos.x + ((1-stepX)/2))/rayDir.x;
 		} else {
