@@ -29,7 +29,7 @@ function setup() {
 	noStroke();
 
 	pos = createVector(5, 5);
-	dir = createVector(0, -1);
+	dir = createVector(0, -1); // Dir normalized to 1. Get ease in math calculation
 	cameraPlane = createVector(0.66, 0);
 }
 
