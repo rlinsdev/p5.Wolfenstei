@@ -86,6 +86,7 @@ function draw() {
 
 
 		let hit = false;
+		let hitSide;
 
 		// Initialize LineSize with the distance to axis
 		let ddaLineSizeX = distToSideX;
@@ -100,15 +101,16 @@ function draw() {
 			if (ddaLineSizeX < ddaLineSizeY) {
 				wallMapPos.x += stepX;
 				ddaLineSizeX += deltaDistX;
+				hitSide = 0;
 			} else {
 				wallMapPos.y += stepY;
 				ddaLineSizeY += deltaDistY;
+				hitSide = 1;
 			}
 			// Check if hit the wall
-			if (gamemap[wallMapPos.x][wallMapPos.x] > 0) {
+			if (gamemap[wallMapPos.x][wallMapPos.y] > 0) {
 				hit = true;
 			}
 		}
-
 	}
 }
