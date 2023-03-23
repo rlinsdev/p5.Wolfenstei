@@ -56,9 +56,34 @@ function draw() {
 		// const deltaDistY = abs(rayDir.mag() / rayDir.y);
 		// const deltaDistX = abs(rayDir.mag() / rayDir.x);
 
-		// Just must be t he same proportion. Change the 'Magnitude' to 1
-		const deltaDistY = abs(1 / rayDir.y);
-		const deltaDistX = abs(1 / rayDir.x);
+		// Just must be the same proportion. Change the 'Magnitude' to 1
+		// rayDir maybe will be zero (0).
+		// const deltaDistY = abs(1 / rayDir.y);
+		// const deltaDistX = abs(1 / rayDir.x);
+
+		let deltaDistY;
+		let deltaDistX;
+
+		// To not divide by zero, force to Y always be less then X
+		if (rayDir.x == 0) {
+			deltaDistX = 1;
+			deltaDistY = 0;
+		}  else {
+			if (rayDir.y) {
+				deltaDistX = abs(1 / rayDir.x);
+			}
+		}
+
+		// To not divide by zero, force to X always be less then Y
+		if (rayDir.y == 0) {
+			deltaDistX = 0;
+			deltaDistY = 1;
+		}  else {
+			if (rayDir.x) {
+				deltaDistY = abs(1 / rayDir.y);
+			}
+		}
+
 
 		// Getting the position of player, but without decimal places
 		const mapPos = createVector(floor(pos.x), floor(pos.y));
