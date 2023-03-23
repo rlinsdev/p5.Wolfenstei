@@ -1,14 +1,14 @@
 // Map
 const gamemap = [
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	[1, 1, 0, 0, 0, 1, 0, 0, 1, 1],
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
 	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-	[1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+	[1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
 	[1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 
@@ -150,5 +150,17 @@ function draw() {
 		} else {
 			perpendicularDist = abs(wallMapPos.y - pos.y + ((1-stepY)/2))/rayDir.y;
 		}
+
+		// Size of wall
+		let wallLineHeight = height/perpendicularDist;
+		let lineStartY = height/2 - wallLineHeight/2;
+		let lineEndY = height/2 + wallLineHeight/2;
+
+		// Change the wall color. If hit 1 side, 1 color, another side, another color
+		let color = hitSide ? 255: 128;
+		// put the color
+		stroke(color, 0, 0);
+		// Draw the line (wall)
+		line(pixel, lineStartY, pixel, lineEndY);
 	}
 }
