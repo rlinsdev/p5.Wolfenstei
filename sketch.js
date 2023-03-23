@@ -31,6 +31,10 @@ function setup() {
 	pos = createVector(5, 5);
 	dir = createVector(0, -1); // Dir normalized to 1. Get ease in math calculation
 	cameraPlane = createVector(0.66, 0);
+
+	// // Rotate the vector to change the angle of view (test)
+	// dir.rotate(1);
+	// cameraPlane.rotate(1);
 }
 
 /*This is the function with a eternal loop*/
