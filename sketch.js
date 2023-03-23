@@ -18,6 +18,12 @@ let dir;
 
 let cameraPlane;
 
+let xoff = 0;
+let yoff = 0;
+let aoff = 0;
+let rotSpeed =  0
+
+
 // size of screen
 const gameWidth = 320; //=> This will be the base to calculate the vectors in rays
 const gameHeight = 200;
@@ -40,8 +46,8 @@ function setup() {
 /*This is the function with a eternal loop*/
 function draw() {
 
-	dir.rotate(0.02);
-	cameraPlane.rotate(0.02);
+	// dir.rotate(0.02);
+	// cameraPlane.rotate(0.02);
 
 	// ceiling
 	background(190, 190, 255);
@@ -171,4 +177,16 @@ function draw() {
 		// Draw the line (wall)
 		line(pixel, lineStartY, pixel, lineEndY);
 	}
+
+	// Perlin noise
+	pos.x = noise(xoff)*8;
+	pos.y = noise(yoff+100)*8;
+	rotSpeed = noise(aoff+50)/60;
+
+	xoff+=0.005;
+	yoff+=0.005;
+	aoff+=0.01;
+
+	dir.rotate(rotSpeed);
+	cameraPlane.rotate(rotSpeed);
 }
