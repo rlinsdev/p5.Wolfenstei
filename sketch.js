@@ -39,6 +39,10 @@ function setup() {
 
 /*This is the function with a eternal loop*/
 function draw() {
+
+	dir.rotate(0.02);
+	cameraPlane.rotate(0.02);
+
 	// ceiling
 	background(190, 190, 255);
 
