@@ -30,6 +30,7 @@ class RayEngine {
 
 		this.movementSpeed = 5;
 		this.rotationSpeed = 0;
+		this.rotationIntensity = 1;
 
 		this.velocity = createVector(0, 0);
 		this.strafeVelocity = createVector(0, 0);
@@ -179,11 +180,13 @@ class RayEngine {
 	}
 
 	// Rotation
-	rotationRight() {
+	rotationRight(intensity=1) {
 		this.rotationSpeed = 3;
+		this.rotationIntensity = intensity;
 	}
-	rotationLeft() {
+	rotationLeft(intensity=1) {
 		this.rotationSpeed = -3;
+		this.rotationIntensity = intensity;
 	}
 	stopRotation() {
 		this.rotationSpeed = 0;
@@ -196,7 +199,7 @@ class RayEngine {
 		this.pos.add(this.strafeVelocity);
 
 		// Must rotate direction and camera plane
-		this.dir.rotate(this.rotationSpeed*frameTime/1000);
-		this.cameraPlane.rotate(this.rotationSpeed*frameTime/1000); // If you do not rotate the plane, when rotate, the wall begin to be far away
+		this.dir.rotate((this.rotationSpeed*frameTime/1000)*this.rotationIntensity);
+		this.cameraPlane.rotate((this.rotationSpeed*frameTime/1000)*this.rotationIntensity); // If you do not rotate the plane, when rotate, the wall begin to be far away
 	}
 }

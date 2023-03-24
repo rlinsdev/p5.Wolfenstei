@@ -59,9 +59,9 @@ function draw() {
 
 	// Rotation
 	if (inputHandler.isKeyDown("rotateright")) {
-		engine.rotationRight();
+		engine.rotationRight(inputHandler.getKey("rotateright"));
 	} else if (inputHandler.isKeyDown("rotateleft")) {
-		engine.rotationLeft();
+		engine.rotationLeft(inputHandler.getKey("rotateleft"));
 	} else {
 		engine.stopRotation();
 	}

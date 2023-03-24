@@ -2,33 +2,39 @@ class InputHandler {
 	constructor () {
 		this.keys = {};
 
-		this.keys["up"] = false;
-		this.keys["down"] = false;
-		this.keys["left"] = false;
-		this.keys["right"] = false;
-		this.keys["rotateright"] = false;
-		this.keys["rotateright"] = false;
-		this.keys["shoot"] = false;
+		this.keys["up"] = 0;
+		this.keys["down"] = 0;
+		this.keys["left"] = 0;
+		this.keys["right"] = 0;
+		this.keys["rotateright"] = 0;
+		this.keys["rotateright"] = 0;
+		this.keys["shoot"] = 0;
 
 	}
 
 	checkKeys() {
-		this.keys["up"] = keyIsDown(87) ? true : false; 	//w
-		this.keys["down"] = keyIsDown(83) ? true : false; 	//s
-		this.keys["left"] = keyIsDown(65) ? true : false; 	//a
-		this.keys["right"] = keyIsDown(68) ? true : false; 	//d
-		this.keys["shoot"] = keyIsDown(32) ? true : false; 	//[space]
+		this.keys["up"] = keyIsDown(87) ? 1 : 0; 		//w
+		this.keys["down"] = keyIsDown(83) ? 1 : 0; 		//s
+		this.keys["left"] = keyIsDown(65) ? 1 : 0; 		//a
+		this.keys["right"] = keyIsDown(68) ? 1 : 0; 	//d
+		this.keys["shoot"] = keyIsDown(32) ? 1 : 0; 	//[space]
 
-		this.keys["rotateleft"] = keyIsDown(LEFT_ARROW) ? true : false;
-		this.keys["rotateright"] = keyIsDown(RIGHT_ARROW) ? true : false;
+		this.keys["rotateleft"] = keyIsDown(LEFT_ARROW) ? 1 : 0;
+		this.keys["rotateright"] = keyIsDown(RIGHT_ARROW) ? 1 : 0;
 
 		if (movedX != 0) {
-			this.keys["rotateleft"] = (movedX < 0) ? true: false;
-			this.keys["rotateright"] = (movedX > 0) ? true: false;
+			let mouseIntensity = map(movedX, 0, 320, 0, 15);
+
+			this.keys["rotateleft"] = (movedX < 0) ? -mouseIntensity: 0;
+			this.keys["rotateright"] = (movedX > 0) ? mouseIntensity: 0;
 		}
 	}
 
 	isKeyDown(key) {
-		return this.keys[key];
+		return boolean(this.keys[key]); // Boolean return
+	}
+
+	getKey(key) {
+		return this.keys[key]; // Value tp represent intensity
 	}
 }
