@@ -35,7 +35,7 @@ function draw() {
 
 	inputHandler.checkKeys();
 
-	engine.generateFrame();
+	engine.generateFrame(deltaTime); // DeltaTime is from ps5. Time in milissec between 1 call and other. It's not good fixed xpto Frames per second. Better use this/calculate
 	image(engine.frameBuffer, 0, 0);
 	// pearlinNoise();
 

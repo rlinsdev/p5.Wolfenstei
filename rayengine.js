@@ -35,9 +35,9 @@ class RayEngine {
 		this.strafeVelocity = createVector(0, 0);
 	}
 
-	generateFrame() {
+	generateFrame(frameTime) {
 
-		this.updateInput();
+		this.updateInput(frameTime);
 
 		// ceiling
 		this.frameBuffer.background(190, 190, 255);
@@ -189,14 +189,14 @@ class RayEngine {
 		this.rotationSpeed = 0;
 	}
 
-	updateInput() {
-		this.velocity.mult(1/60); //60 frame per second
-		this.strafeVelocity.mult(1/60); //60 frame per second
+	updateInput(frameTime) {
+		this.velocity.mult(frameTime/1000); //60 frame per second
+		this.strafeVelocity.mult(frameTime/1000); //60 frame per second
 		this.pos.add(this.velocity);
 		this.pos.add(this.strafeVelocity);
 
 		// Must rotate direction and camera plane
-		this.dir.rotate(this.rotationSpeed/60);
-		this.cameraPlane.rotate(this.rotationSpeed/60); // If you do not rotate the plane, when rotate, the wall begin to be far away
+		this.dir.rotate(this.rotationSpeed*frameTime/1000);
+		this.cameraPlane.rotate(this.rotationSpeed*frameTime/1000); // If you do not rotate the plane, when rotate, the wall begin to be far away
 	}
 }
