@@ -30,10 +30,18 @@ function setup() {
 
 /*This is the function with a eternal loop*/
 function draw() {
-
-	// // ceiling
 	background(35);
 
 	engine.generateFrame();
 	image(engine.frameBuffer, 0, 0);
+
+	let rotSpeed = noise(aoff+50)/60;
+
+	engine.pos.x = noise(aoff)*8;
+	engine.pos.y = noise(aoff+100)*8;
+	engine.dir.rotate(rotSpeed);
+
+	xoff+=0.005;
+	yoff+=0.005;
+	aoff+=0.01;
 }
