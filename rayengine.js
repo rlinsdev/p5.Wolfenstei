@@ -143,4 +143,6 @@ class RayEngine {
 		// Draw the line (wall)
 		this.frameBuffer.line(xpos, lineStartY, xpos, lineEndY);
 	}
+
+	
 }

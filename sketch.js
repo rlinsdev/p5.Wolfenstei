@@ -25,6 +25,7 @@ function setup() {
 	noStroke();
 
 	gamemap = new Map();
+	inputHandler = new InputHandler();
 	engine = new RayEngine(gameWidth, gameHeight, gamemap);
 }
 
@@ -32,10 +33,12 @@ function setup() {
 function draw() {
 	background(35);
 
+	inputHandler.checkKeys();
+
 	engine.generateFrame();
 	image(engine.frameBuffer, 0, 0);
-
 	// pearlinNoise();
+	// if (inputHandler.isKeyDown("shoot"))
 
 }
 
