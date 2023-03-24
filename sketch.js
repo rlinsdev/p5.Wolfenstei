@@ -35,6 +35,12 @@ function draw() {
 	engine.generateFrame();
 	image(engine.frameBuffer, 0, 0);
 
+	// pearlinNoise();
+
+}
+
+function pearlinNoise() {
+
 	let rotSpeed = noise(aoff+50)/60;
 
 	engine.pos.x = noise(aoff)*8;
