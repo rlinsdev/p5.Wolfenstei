@@ -29,6 +29,7 @@ class RayEngine {
 		this.wallColor = null;
 
 		this.movementSpeed = 5;
+		this.rotationSpeed = 0;
 		this.velocity = createVector(0, 0);
 	}
 
@@ -161,8 +162,22 @@ class RayEngine {
 		this.velocity.mult(0);
 	}
 
+	rotationRight() {
+		this.rotationSpeed = 3;
+	}
+
+	rotationLeft() {
+		this.rotationSpeed = -3;
+	}
+
+	stopRotation() {
+		this.rotationSpeed = 0;
+	}
+
 	updateInput() {
 		this.velocity.mult(1/60); //60 frame per second
 		this.pos.add(this.velocity);
+
+		this.dir.rotate(this.rotationSpeed/60);
 	}
 }

@@ -39,12 +39,22 @@ function draw() {
 	image(engine.frameBuffer, 0, 0);
 	// pearlinNoise();
 
+	// Walking
 	if (inputHandler.isKeyDown("up")) {
 		engine.walkUp();
 	} else if (inputHandler.isKeyDown("down")) {
 		engine.walkDown();
 	} else {
 		engine.stopWalking();
+	}
+
+	// Rotation
+	if (inputHandler.isKeyDown("rotateright")) {
+		engine.rotationRight();
+	} else if (inputHandler.isKeyDown("rotateleft")) {
+		engine.rotationLeft();
+	} else {
+		engine.stopRotation();
 	}
 
 }
