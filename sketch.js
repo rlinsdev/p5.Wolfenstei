@@ -48,6 +48,15 @@ function draw() {
 		engine.stopWalking();
 	}
 
+	// strafe
+	if (inputHandler.isKeyDown("left")) {
+		engine.strafeLeft();
+	} else if (inputHandler.isKeyDown("right")) {
+		engine.strafeRight();
+	} else {
+		engine.stopStrafe();
+	}
+
 	// Rotation
 	if (inputHandler.isKeyDown("rotateright")) {
 		engine.rotationRight();

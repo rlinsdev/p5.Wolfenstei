@@ -30,7 +30,9 @@ class RayEngine {
 
 		this.movementSpeed = 5;
 		this.rotationSpeed = 0;
+
 		this.velocity = createVector(0, 0);
+		this.strafeVelocity = createVector(0, 0);
 	}
 
 	generateFrame() {
@@ -148,36 +150,53 @@ class RayEngine {
 		this.frameBuffer.line(xpos, lineStartY, xpos, lineEndY);
 	}
 
+	// Walk
 	walkUp() {
 		this.velocity.set(this.dir);
 		this.velocity.mult(this.movementSpeed);
 	}
-
 	walkDown() {
 		this.velocity.set(this.dir);
 		this.velocity.mult(-this.movementSpeed);
 	}
-
 	stopWalking() {
 		this.velocity.mult(0);
 	}
 
+	// Strafe
+	strafeRight() {
+		this.strafeVelocity.set(this.dir);
+		this.strafeVelocity.rotate(PI/2);
+		this.strafeVelocity.mult(this.movementSpeed);
+	}
+	strafeLeft() {
+		this.strafeVelocity.set(this.dir);
+		this.strafeVelocity.rotate(-PI/2);
+		this.strafeVelocity.mult(this.movementSpeed);
+	}
+	stopStrafe() {
+		this.strafeVelocity.mult(0);
+	}
+
+	// Rotation
 	rotationRight() {
 		this.rotationSpeed = 3;
 	}
-
 	rotationLeft() {
 		this.rotationSpeed = -3;
 	}
-
 	stopRotation() {
 		this.rotationSpeed = 0;
 	}
 
 	updateInput() {
 		this.velocity.mult(1/60); //60 frame per second
+		this.strafeVelocity.mult(1/60); //60 frame per second
 		this.pos.add(this.velocity);
+		this.pos.add(this.strafeVelocity);
 
+		// Must rotate direction and camera plane
 		this.dir.rotate(this.rotationSpeed/60);
+		this.cameraPlane.rotate(this.rotationSpeed/60); // If you do not rotate the plane, when rotate, the wall begin to be far away
 	}
 }
