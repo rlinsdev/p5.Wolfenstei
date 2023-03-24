@@ -27,11 +27,14 @@ class RayEngine {
 		this.wallHitMapPos = null;
 		this.perpendicularDist = null;
 		this.wallColor = null;
+
+		this.movementSpeed = 5;
+		this.velocity = createVector(0, 0);
 	}
 
 	generateFrame() {
-		// dir.rotate(0.02);
-		// cameraPlane.rotate(0.02);
+
+		this.updateInput();
 
 		// ceiling
 		this.frameBuffer.background(190, 190, 255);
@@ -144,5 +147,22 @@ class RayEngine {
 		this.frameBuffer.line(xpos, lineStartY, xpos, lineEndY);
 	}
 
-	
+	walkUp() {
+		this.velocity.set(this.dir);
+		this.velocity.mult(this.movementSpeed);
+	}
+
+	walkDown() {
+		this.velocity.set(this.dir);
+		this.velocity.mult(-this.movementSpeed);
+	}
+
+	stopWalking() {
+		this.velocity.mult(0);
+	}
+
+	updateInput() {
+		this.velocity.mult(1/60); //60 frame per second
+		this.pos.add(this.velocity);
+	}
 }

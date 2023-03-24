@@ -38,7 +38,14 @@ function draw() {
 	engine.generateFrame();
 	image(engine.frameBuffer, 0, 0);
 	// pearlinNoise();
-	// if (inputHandler.isKeyDown("shoot"))
+
+	if (inputHandler.isKeyDown("up")) {
+		engine.walkUp();
+	} else if (inputHandler.isKeyDown("down")) {
+		engine.walkDown();
+	} else {
+		engine.stopWalking();
+	}
 
 }
 
