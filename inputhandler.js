@@ -21,6 +21,11 @@ class InputHandler {
 
 		this.keys["rotateleft"] = keyIsDown(LEFT_ARROW) ? true : false;
 		this.keys["rotateright"] = keyIsDown(RIGHT_ARROW) ? true : false;
+
+		if (movedX != 0) {
+			this.keys["rotateleft"] = (movedX < 0) ? true: false;
+			this.keys["rotateright"] = (movedX > 0) ? true: false;
+		}
 	}
 
 	isKeyDown(key) {
