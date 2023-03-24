@@ -18,9 +18,12 @@ let rotSpeed =  0
 const gameWidth = 320; //=> This will be the base to calculate the vectors in rays
 const gameHeight = 200;
 
+let gameScale = 1;
+
 function setup() {
 	// Size of screen. This will generate var height and width globaly
-	createCanvas(800, 600);
+	// createCanvas(800, 600);
+	createCanvas(gameWidth, gameHeight);
 	// remove black row to divide frames
 	noStroke();
 
@@ -31,6 +34,9 @@ function setup() {
 
 /*This is the function with a eternal loop*/
 function draw() {
+
+	scale(gameScale);
+
 	background(35);
 
 	inputHandler.checkKeys();
@@ -83,4 +89,15 @@ function pearlinNoise() {
 
 function mouseClicked() {
 	requestPointerLock(); // Will make the mouse pointer hidden
+	let fs = fullscreen();
+
+	if (fs) {
+		resizeCanvas(gameWidth, gameHeight);
+		gameScale = 1;
+	} else {
+		resizeCanvas(gameWidth*5, gameHeight*5);
+		gameScale = 6;
+	}
+
+	fullscreen(!fs);
 }
