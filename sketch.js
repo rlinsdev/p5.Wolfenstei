@@ -65,7 +65,6 @@ function draw() {
 	} else {
 		engine.stopRotation();
 	}
-
 }
 
 function pearlinNoise() {
@@ -79,4 +78,9 @@ function pearlinNoise() {
 	xoff+=0.005;
 	yoff+=0.005;
 	aoff+=0.01;
+}
+
+
+function mouseClicked() {
+	requestPointerLock(); // Will make the mouse pointer hidden
 }
